@@ -18,12 +18,44 @@ from typing import *
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        pass
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i = 0
+        j = len(nums)
+        while i < j:
+            x = nums[i]
+            y = target - x
+            if y in nums[i + 1:]:
+                return [i, nums[i + 1:].index(y) + i + 1]
+            else:
+                i += 1
+        return None
+
+    def two_sum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if len(nums) <= 1:
+            return False
+        buff_dict = {}
+        for i in range(len(nums)):
+            if nums[i] in buff_dict:
+                return [buff_dict[nums[i]], i]
+            else:
+                buff_dict[target - nums[i]] = i
 
 
 # leetcode submit region end(Prohibit modification and deletion)
 
 
 if __name__ == '__main__':
-    solution = Solution()
     # TO TEST
+    nums = [2, 7, 11, 15]
+    target = 9
+    assert (Solution().twoSum(nums, target) == [0, 1])
+
